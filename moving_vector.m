@@ -1,0 +1,1 @@
+function [] = moving_vector()
