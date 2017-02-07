@@ -1,0 +1,11 @@
+function [relative_location] = determine_reflection_location(jade_surface,spot_index,angle_index,cancel_index)
+
+[r,c] = find(jade_surface == max(jade_surface(:)));
+
+measure_numbers = spot_index * angle_index * cancel_index;
+
+relative_location = cell(1,measure_numbers);
+
+for k = 1:measure_numbers
+    relative_location{k} = [x_position,y_position,spot_index,angle_index,cancel_index];
+end
