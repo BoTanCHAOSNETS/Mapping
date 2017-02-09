@@ -48,8 +48,8 @@ elseif spot_index == 15
     x_shift = 2.5*cos(slope_angle);
     y_shift = 2.5*din(slope_angle);
 elseif spot_index == 16
-    x_shift = 3*cos(slope_angle);
-    y_shift = 3*din(slope_angle);
+    x_shift = 0.5*cos(slope_angle);
+    y_shift = 0.5*din(slope_angle);
 end
 
 

@@ -70,13 +70,8 @@ for k = 1:No_spot
     end
 end
 
-%%%% add the orienation facts on each measurement spot
-% [oriented_location] = add_orientation(relative_location);
-[oriented_location_orginal] = add_orientation(relative_location_orginal);
-
 %%%% Attach the moving vector to relative_location
-% absolute_location = attache_moving_vector(oriented_location);
-absolute_location_orginal = attache_moving_vector(oriented_location_orginal);
+[absolute_location = attache_moving_vector(relative_location_orginal);
 
 %%%% Synthesis Information
 % extend the moving shift vector to 3072 size

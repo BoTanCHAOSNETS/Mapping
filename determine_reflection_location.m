@@ -3,8 +3,8 @@ function [relative_location] = determine_reflection_location(jade_surface,spot_i
 [delay_grid,AoA_angle] = find(jade_surface == max(jade_surface(:)));
 
 % convert JADE to x-y
-delay_grid_offset = 6; % delay grid offset
-if delay_grid >= 6
+delay_grid_offset = 5; % delay grid offset
+if delay_grid >= 5
     delay_grid = delay_grid - delay_grid_offset;
 else 
     delay_grid = 0;
@@ -19,7 +19,12 @@ AoA_rad = AoA_rad + array_offset; % corrected array placement bias
 % ellipse (using delya_distnace)
 % line (using AoA_rad)
 % get the cross point (x_position, y_position)
-[x_position,y_position] = test_intersection(delay_distance,rad2deg(AoA_rad));
+if delay_distance > 0 
+    [x_position,y_position] = test_intersection(delay_distance,rad2deg(AoA_rad));
+else
+     x_position = 0;
+     y_position = 0;
+end
 
 relative_location = [x_position,y_position,spot_index,angle_index,cancel_index];
 
