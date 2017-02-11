@@ -34,22 +34,22 @@ elseif spot_index == 10
     y_shift = 2.5;
 elseif spot_index == 11
     x_shift = 0.5*cos(slope_angle);
-    y_shift = 0.5*din(slope_angle);
+    y_shift = 0.5*sin(slope_angle);
 elseif spot_index == 12
     x_shift = 1*cos(slope_angle);
-    y_shift = 1*din(slope_angle);
+    y_shift = 1*sin(slope_angle);
 elseif spot_index == 13
     x_shift = 1.5*cos(slope_angle);
-    y_shift = 1.5*din(slope_angle);
+    y_shift = 1.5*sin(slope_angle);
 elseif spot_index == 14
     x_shift = 2*cos(slope_angle);
-    y_shift = 2*din(slope_angle);
+    y_shift = 2*sin(slope_angle);
 elseif spot_index == 15
     x_shift = 2.5*cos(slope_angle);
-    y_shift = 2.5*din(slope_angle);
+    y_shift = 2.5*sin(slope_angle);
 elseif spot_index == 16
     x_shift = 3*cos(slope_angle);
-    y_shift = 3*din(slope_angle);
+    y_shift = 3*sin(slope_angle);
 end
 
 

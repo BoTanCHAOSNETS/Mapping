@@ -1,10 +1,12 @@
 function [relative_location] = determine_reflection_location(jade_surface,spot_index,angle_index,cancel_index)
 
 [delay_grid,AoA_angle] = find(jade_surface == max(jade_surface(:)));
+delay_grid = max(delay_grid); % in case JADE surface have multiple max points
+AoA_angle = mean(AoA_angle); % in case JADE surface have multiple max points
 
 % convert JADE to x-y
-delay_grid_offset = 5; % delay grid offset
-if delay_grid >= 5
+delay_grid_offset = 6; % delay grid offset
+if delay_grid >= 6
     delay_grid = delay_grid - delay_grid_offset;
 else 
     delay_grid = 0;

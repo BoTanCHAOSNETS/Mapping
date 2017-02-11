@@ -1,6 +1,6 @@
 function [line] = plotline(angle)
 
-x = [-5:0.1:5];
+x = [-10:0.1:10];
 
 y = tan(degtorad(angle))*x;
 

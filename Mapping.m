@@ -16,7 +16,6 @@ layout_grid = define_map(x_range,y_range,resolution);
 % orientation of each measurement spot
 % need to think about how to synthesis the orientation information to each JADE surface
 
-
 %%%% Determine the Reflection Spot
 % 16 spots, 24 angles on each spot, each angle cancel 8 layers, 16*24*8 = 3072 JADEs
 % This part calculates reflection location of each JADE suface 
@@ -33,31 +32,34 @@ No_cancel = 8;
 measure_numbers = No_spot * No_angle * No_cancel;
 relative_location = cell(No_spot,No_angle,No_cancel);
 relative_location_orginal = cell(No_spot,No_angle);
-% code_path = 'C:\Users\ac5162\Documents\MATLAB\Mapping';
-code_path = 'C:\Users\Bo\Documents\MATLAB\Mapping';
+code_path = 'C:\Users\ac5162\Documents\MATLAB\Mapping';
+% code_path = 'C:\Users\Bo\Documents\MATLAB\Mapping';
 % cancelled JADEs
-% for k = 1:No_spot
-%     for h = 1:No_angle
-%         for g = 1:No_cancel
-%             % jade_file_path = strcat('C:\Users\ac5162\Documents\MATLAB\auto_cancel_test_log\',num2str(k));
-%             jade_file_path = strcat('C:\Users\Bo\Documents\MATLAB\auto_cancel_test_log\',num2str(k));
-%             jade_file_name = strcat('Cancelled 0_0_',num2str(h),'_',num2str(g-1),'.txt');
-%             cd(jade_file_path);
-%             jade_surface = textread(jade_file_name);
-%             jade_surface = jade_surface';
-%             jade_surface = jade_surface([1:35],:);
-%             cd(code_path);
-%             relative_location{k,h,g} = determine_reflection_location(jade_surface,k,h,g);  
-%             [k,h,g]
-%         end
-%     end
-% end
+% for k = 5:5
+%     for h = 12:12
+%         for g = 7:8
+for k = 1:No_spot
+    for h = 1:No_angle
+        for g = 1:No_cancel
+            jade_file_path = strcat('C:\Users\ac5162\Documents\MATLAB\auto_cancel_test_log\',num2str(k));
+            % jade_file_path = strcat('C:\Users\Bo\Documents\MATLAB\auto_cancel_test_log\',num2str(k));
+            jade_file_name = strcat('Cancelled 0_0_',num2str(h),'_',num2str(g-1),'.txt');
+            cd(jade_file_path);
+            jade_surface = textread(jade_file_name);
+            jade_surface = jade_surface';
+            jade_surface = jade_surface([1:35],:);
+            cd(code_path);
+            relative_location{k,h,g} = determine_reflection_location(jade_surface,k,h,g);  
+            [k,h,g]
+        end
+    end
+end
 
 % Original JADEs
 for k = 1:No_spot
     for h = 1:No_angle
-        % jade_file_path = strcat('C:\Users\ac5162\Documents\MATLAB\auto_cancel_test_log\',num2str(k));
-        jade_file_path = strcat('C:\Users\Bo\Documents\MATLAB\auto_cancel_test_log\',num2str(k));
+        jade_file_path = strcat('C:\Users\ac5162\Documents\MATLAB\auto_cancel_test_log\',num2str(k));
+        % jade_file_path = strcat('C:\Users\Bo\Documents\MATLAB\auto_cancel_test_log\',num2str(k));
         jade_file_name = strcat('Original 0_0_',num2str(h),'.txt');
         cd(jade_file_path);
         jade_surface = textread(jade_file_name);
@@ -71,15 +73,19 @@ for k = 1:No_spot
 end
 
 %%%% add the orienation facts on each measurement spot
-% [oriented_location] = add_orientation(relative_location);
+[oriented_location] = add_orientation(relative_location);
 [oriented_location_orginal] = add_orientation(relative_location_orginal);
 
 %%%% Attach the moving vector to relative_location
-% absolute_location = attache_moving_vector(oriented_location);
+absolute_location = attache_moving_vector(oriented_location);
 absolute_location_orginal = attache_moving_vector(oriented_location_orginal);
 
+plot_cell(absolute_location);
+plot_cell(absolute_location_orginal);
+
 %%%% Synthesis Information
-% extend the moving shift vector to 3072 size
+%%%% need to allocate the points to pre defined grids
+%%%% need to figure out the 2D gaussian code first 
 % synthesis the map
 
 
