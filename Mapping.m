@@ -1,16 +1,5 @@
 clear all;
 
-
-%%%% Define the Map
-% x_range : in
-% y_range : in
-% resolution : in
-% layout_grid {3D cell [x,y,intensity]} : out  % intensity is initialized to 0
-x_range = 10;
-y_range = 10;
-resolution = 0.5;
-layout_grid = define_map(x_range,y_range,resolution);
-
 %%%% Moving Shift vector
 % x-y coordination shift of each measurement spot
 % orientation of each measurement spot
@@ -80,8 +69,30 @@ end
 absolute_location = attache_moving_vector(oriented_location);
 absolute_location_orginal = attache_moving_vector(oriented_location_orginal);
 
-plot_cell(absolute_location);
-plot_cell(absolute_location_orginal);
+flatted_absolute_location = flating_location_cell(absolute_location);
+flatted_absolute_location_orginal = flating_location_cell(absolute_location_orginal);
+
+selected_cell = selecting_location_cell(absolute_location_orginal,[12,24],[1,1]);
+plot_cell(selected_cell);
+
+%%%% Define the Map
+% x_range : in
+% y_range : in
+% resolution : in
+% layout_grid {3D cell [x,y,intensity]} : out  % intensity is initialized to 0
+%%%% We need to define the the x y range according to potential range from
+%%%% above calculation, in real situation, we need check the "location_cells" 
+x_range = [-6,10];  % x_range[x_min,x_max]
+y_range = [-11,10]; % y_range[y_min,y_max]
+resolution = 1;
+[layout_grid,x_vector,y_vector] = define_map(x_range,y_range,resolution);
+
+weighted_grid = cell_allocate(flatted_absolute_location_orginal,layout_grid,x_vector,y_vector);
+
+subplot(1,2,1), plot_weighted_grid(weighted_grid,x_vector,y_vector);
+subplot(1,2,2), plot_flatted_cell(flatted_absolute_location_orginal);
+
+% plot_flatted_cell(flatted_absolute_location_orginal);
 
 %%%% Synthesis Information
 %%%% need to allocate the points to pre defined grids
