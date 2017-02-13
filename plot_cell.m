@@ -10,7 +10,7 @@ if No_dimension == 3 % cancelled jade surface
                 x = location_cells{k,h,g}(1);
                 y = location_cells{k,h,g}(2);
                 complex_location = x+j*y;
-                plot(complex_location,'.','MarkerSize',8,'LineWidth',4),grid on, hold on;
+                plot(complex_location,'.'),grid on, hold on;
             end
         end
     end
@@ -20,7 +20,7 @@ elseif No_dimension ==2 % original jade surface
             x = location_cells{k,h}(1);
             y = location_cells{k,h}(2);
             complex_location = x+j*y;
-            plot(complex_location,'.','MarkerSize',8,'LineWidth',4),grid on, hold on;
+            plot(complex_location,'.'),grid on, hold on;
         end
     end 
 end
